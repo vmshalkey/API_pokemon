@@ -1,0 +1,22 @@
+#scrollbox {
+	width: 500px;
+	height: 400px;
+	overflow: auto;
+	border: solid 1px black;
+}
+
+
+
+.display {
+display: inline-block;
+vertical-align: top;
+}
+
+#screen{
+	background-color: white; 
+	width: 300px;
+	height: 400px;
+	margin: auto;
+	border: solid 50px red;
+
+}

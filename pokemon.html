@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pokemon Yo</title>
+	<link rel="stylesheet" href='style.css'>
+	<script src="jquery-1.11.3.min.js"></script>
+	<script type='text/javascript'>
+	     $(document).ready(function(){
+	     	
+
+	     	var pokemon_sprite = "";
+      	    for(var i = 1; i < 500; i++)
+      	    {
+      	    	pokemon_sprite += "<img id=" + i + " src ='http://pokeapi.co/media/img/" + i + ".png'>"; 
+      	    }
+      	    $('#pokemon').html(pokemon_sprite);
+
+
+
+      	    $('img').click(function()
+      	    {
+      	    	var id = $(this).attr('id');
+
+      	    	$.get('http://pokeapi.co/api/v1/pokemon/'+id, function(pokemon)
+				{
+      	    		var pokedex = '';
+      	    		pokedex += '<h2>'+pokemon.name+'</h2>';
+      	    		pokedex += '<img src="http://pokeapi.co/media/img/'+id+'.png">';
+      	    		pokedex += '<h4>Types</h4>';
+      	    		pokedex += '<ul>';
+	
+	
+      	    		for(var p = 0; p < pokemon.types.length; p++)
+      	    		{
+      	    			pokedex += '<li>' +pokemon.types[p].name+'<li>';
+      	    		}
+      	    	pokedex += '</ul><h4>Height</h4>';
+				pokedex += pokemon.height;
+				pokedex += '<h4>Weight</h4>';
+				pokedex += pokemon.weight;
+				$('#screen').html(pokedex);
+				}, 'json');
+			})
+
+      	   
+
+      	})
+
+
+
+	     
+	   
+	   
+            
+   </script>
+</head>
+<body>
+<h1>Pokemon YO</h1>
+	<div id="scrollbox" class="display">
+		<div id="pokemon"></div>
+	</div>	
+
+	<div id="pokedex" class="display">
+		<div id="screen"></div>
+	</div>
+</body>
+</html>
